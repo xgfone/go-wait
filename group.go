@@ -16,8 +16,9 @@ package wait
 
 import (
 	"context"
-	"log"
 	"sync"
+
+	"github.com/xgfone/go-defaults"
 )
 
 // Group allows to start a group of goroutines and wait for their completion.
@@ -52,6 +53,6 @@ func (g *Group) run(f func()) {
 
 func wrapPanic() {
 	if r := recover(); r != nil {
-		log.Printf("wrap a papnic: %+v", r)
+		defaults.HandlePanic(r)
 	}
 }

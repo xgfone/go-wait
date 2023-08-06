@@ -1,3 +1,5 @@
 module github.com/xgfone/go-wait
 
-go 1.11
+require github.com/xgfone/go-defaults v0.7.0
+
+go 1.18
