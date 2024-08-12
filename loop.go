@@ -212,5 +212,5 @@ func RunForever(c context.Context, startDelay, interval time.Duration, f func(co
 	if startDelay > 0 {
 		startDelay = Jitter(startDelay, 0)
 	}
-	NewSimpleJitterLoop(startDelay, interval).RunForever(c, f)
+	_ = NewSimpleJitterLoop(startDelay, interval).RunForever(c, f)
 }

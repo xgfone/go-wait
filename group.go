@@ -53,6 +53,6 @@ func (g *Group) run(f func()) {
 
 func wrapPanic() {
 	if r := recover(); r != nil {
-		defaults.HandlePanic(r)
+		defaults.HandlePanic(defaults.ExitContext(), r)
 	}
 }
