@@ -77,8 +77,8 @@ func NewJitterLoop(startDelay, interval time.Duration, sliding bool, jitterFacto
 }
 
 // RunForever runs the function f forever until the context c is cancelled.
-func (l JitterLoop) RunForever(c context.Context, r func(context.Context)) error {
-	return l.Run(c, ForeverRunner(r))
+func (l JitterLoop) RunForever(c context.Context, r func(context.Context)) {
+	_ = l.Run(c, ForeverRunner(r))
 }
 
 // Run implements the interface Loop, which loops running f every interval
@@ -212,5 +212,5 @@ func RunForever(c context.Context, startDelay, interval time.Duration, f func(co
 	if startDelay > 0 {
 		startDelay = Jitter(startDelay, 0)
 	}
-	_ = NewSimpleJitterLoop(startDelay, interval).RunForever(c, f)
+	NewJitterLoop(startDelay, interval, true, 0).RunForever(c, f)
 }
